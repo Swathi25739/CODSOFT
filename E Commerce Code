@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Store</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Header Section */
+        header {
+            background: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background: #ffc107;
+            padding: 10px;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            color: #007bff;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            margin: 20px 0;
+            color: #007bff;
+        }
+
+        /* Products Section */
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .product {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 280px;
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .product h3 {
+            margin: 15px 0;
+            color: #007bff;
+        }
+        .product p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .product .price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ff5722;
+        }
+        .product button {
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .product button:hover {
+            background: #218838;
+        }
+
+        /* Footer Section */
+        footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Our Store</h1>
+    <p>Find everything you need, all in one place!</p>
+</header>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <a href="#electronics">Electronics</a>
+    <a href="#fashion">Fashion</a>
+    <a href="#gaming">Gaming</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<!-- Electronics Section -->
+<section id="electronics">
+    <h2 class="section-title">Electronics</h2>
+    <div class="products">
+        <div class="product">
+            <img src="laptop.jpg" alt="Laptop">
+            <h3>High-Performance Laptop</h3>
+            <p>Perfect for work and play</p>
+            <p class="price">₹79,999</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="smartphone.jpg" alt="Smartphone">
+            <h3>Latest Smartphone</h3>
+            <p>Stay connected anywhere</p>
+            <p class="price">₹49,999</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="headphones.jpg" alt="Headphones">
+            <h3>Wireless Headphones</h3>
+            <p>Immersive audio experience</p>
+            <p class="price">₹7,999</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="smartwatch.jpg" alt="Smartwatch">
+            <h3>Smartwatch</h3>
+            <p>Track your health and fitness</p>
+            <p class="price">₹14,999</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</section>
+
+<!-- Fashion Section -->
+<section id="fashion">
+    <h2 class="section-title">Fashion</h2>
+    <div class="products">
+        <div class="product">
+            <img src="jacket.jpg" alt="Jacket">
+            <h3>Stylish Jacket</h3>
+            <p>Keep warm in style</p>
+            <p class="price">₹3,499</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="dress.jpg" alt="Dress">
+            <h3>Elegant Dress</h3>
+            <p>Perfect for any occasion</p>
+            <p class="price">₹2,499</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="shoes.jpg" alt="Shoes">
+            <h3>Comfortable Shoes</h3>
+            <p>Walk with confidence</p>
+            <p class="price">₹1,999</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="tshirt.jpg" alt="T-Shirt">
+            <h3>Casual T-Shirt</h3>
+            <p>Simple and stylish</p>
+            <p class="price">₹999</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</section>
+
+<!-- Gaming Section -->
+<section id="gaming">
+    <h2 class="section-title">Gaming</h2>
+    <div class="products">
+        <div class="product">
+            <img src="gaming-console.jpg" alt="Gaming Console">
+            <h3>Gaming Console</h3>
+            <p>Immersive gaming experience</p>
+            <p class="price">₹39,999</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="gaming-chair.jpg" alt="Gaming Chair">
+            <h3>Ergonomic Gaming Chair</h3>
+            <p>Comfort for long hours</p>
+            <p class="price">₹12,999</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="keyboard.jpg" alt="Gaming Keyboard">
+            <h3>RGB Gaming Keyboard</h3>
+            <p>Precision at your fingertips</p>
+            <p class="price">₹4,999</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="mouse.jpg" alt="Gaming Mouse">
+            <h3>Gaming Mouse</h3>
+            <p>Enhanced performance</p>
+            <p class="price">₹3,499</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</section>
+
