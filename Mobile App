@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signup with Custom Password Validation</title>
+  <style>
+    /* Reset and background styling */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f5f7fa;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Main container card design */
+    .card {
+      background: linear-gradient(135deg, #ffffff, #f0f2f5);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      width: 360px;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+      animation: slideIn 0.7s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Header styling */
+    h1 {
+      color: #2d4059;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 25px;
+    }
+
+    /* Input styling */
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .input-group label {
+      font-size: 14px;
+      color: #495057;
+      margin-bottom: 5px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 14px;
+      background-color: #ffffff;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: border-color 0.3s ease;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #4caf50;
+    }
+
+    /* Action button styling */
+    .action-button {
+      background: #4caf50;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .action-button:hover {
+      background: #43a047;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Link styling */
+    .link {
+      display: block;
+      font-size: 13px;
+      color: #2d4059;
+      text-decoration: none;
+      margin-top: 15px;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+
+    /* Error message styling */
+    .error {
+      color: #e53935;
+      font-size: 13px;
+      margin: 10px 0;
+      display: none;
+    }
+
+    .error.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Create Account</h1>
+    <p>Sign up to access all the cool features of our app!</p>
+    <form id="signupForm">
+      <div class="input-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your Full Name" />
+      </div>
+      <div class="input-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" />
+      </div>
+      <div class="input-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Choose a strong password" />
+      </div>
+      <button type="submit" class="action-button">Sign Up</button>
+      <p id="errorMessage" class="error"></p>
+    </form>
+    <a href="#" class="link">Already have an account? Log in</a>
+  </div>
+
+  <script>
+    // Simulated in-memory storage for registered emails
+    const registeredEmails = [];
+
+    /**
+     * Check for a "strong" password based on the following criteria:
+     * - At least 6 characters in length.
+     * - Contains at least two of these three character types:
+     *   • Letters (A-Z, a-z)
+     *   • Numbers (0-9)
+     *   • Symbols (any non-alphanumeric character)
+     */
+    function isStrongPassword(password) {
+      if (password.length < 6) return false;
+
+      const hasLetter = /[A-Za-z]/.test(password);
+      const hasNumber = /\d/.test(password);
+      const hasSymbol = /[^A-Za-z0-9]/.test(password);
+
+      // Count how many character groups are present
+      let groupCount = 0;
+      if (hasLetter) groupCount++;
+      if (hasNumber) groupCount++;
+      if (hasSymbol) groupCount++;
+
+      return groupCount >= 2;
+    }
+
+    // Capture the signup form and error message element
+    const form = document.getElementById('signupForm');
+    const errorMessage = document.getElementById('errorMessage');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      // Get trimmed values from input fields
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      // Clear any existing error message
+      errorMessage.classList.remove('visible');
+      errorMessage.textContent = '';
+
+      // Check for duplicate email (simulate a database check)
+      if (registeredEmails.includes(email.toLowerCase())) {
+        errorMessage.textContent = email.toLowerCase().includes("gmail.com")
+          ? "Gmail is already in use. Please try another email."
+          : "Email is already in use. Please try another email.";
+        errorMessage.classList.add('visible');
+        return;
+      }
+
+      // Check that name and email are provided
+      if (!name || !email) {
+        errorMessage.textContent = "Please fill in all your details.";
+        errorMessage.classList.add('visible');
+        return;
+      }
+
+      // Validate the password using our custom strength rules:
+      if (!isStrongPassword(password)) {
+        errorMessage.textContent = "Password is weak. It must be at least 6 characters and contain any two of the following: letters, numbers, and symbols.";
+        errorMessage.classList.add('visible');
+        return;
+      }
+
+      // All validations passed – register the email and simulate a successful signup
+      registeredEmails.push(email.toLowerCase());
+      alert('Signup successful!');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
